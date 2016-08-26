@@ -4,7 +4,7 @@ Random pick music, smart play
 ### Idea：💡
 |  -     | Love Story | 东风破  |Refrain  | Tassel|   －       |
 | -------|:----------:| -------:| -------:|------:|-----------:|
-| 次序   |  weight    | weight  |weight   | weight|   picked   |
+|sequence|  weight    | weight  |weight   | weight|   picked   |
 | 1      |    1       |     1   |   1     |   1   |   东风破   |
 | 2      |    2       |     0   |   2     |   2   | Love Story |
 | 3      |    0       |     1   |   3     |   3   |   Refrain  |
@@ -17,5 +17,24 @@ Random pick music, smart play
 | 10     |    1       |     2   |   6     |   0   |     ...    |
 ...
 
+### Demo
 ![RandomPicker](https://raw.githubusercontent.com/XunMengWinter/source/master/gif/RandomPicker.gif)
+
+### How to use
+Quick start:
+```
+RandomPicker randomPicker = new RandomPicker(12);
+int nextPos = randomPicker.next();
+```
+More function:
+```
+randomPicker.setMultiplyNumber(3);
+randomPicker.setAddNumber(2);
+randomPicker.setNextPick(5);
+randomPicker.add();
+randomPicker.changeOriginWeight(0,3);
+randomPicker.getHistoryList();
+```
+More more function:
+download this repo and watch the code.
 
