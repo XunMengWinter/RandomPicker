@@ -1,6 +1,6 @@
 # RandomPicker [![](https://jitpack.io/v/XunMengWinter/RandomPicker.svg)](https://jitpack.io/#XunMengWinter/RandomPicker)
 
-[中文版](http://www.jianshu.com/p/472fed76690a)
+[简书中文](http://www.jianshu.com/p/472fed76690a)
 
 ### Idea：💡
 Pseudo-random. There are some musics in your play list, each music's weight is 1 in the first.
