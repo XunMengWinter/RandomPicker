@@ -3,6 +3,10 @@
 Random pick music, smart play
 
 ### Idea：💡
+Pseudo-random. There are some musics in your play list, each music's weight is 1 in the first.
+Each time you clicked the next button, each music's weight++, and the picked music's weight return to 0.
+The music's weight is positive correlated with be picked chance.
+
 |  -     | Love Story | 东风破  |Refrain  | Tassel|   －       |
 | -------|:----------:| -------:| -------:|------:|-----------:|
 |sequence|  weight    | weight  |weight   | weight|   picked   |
