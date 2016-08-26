@@ -61,3 +61,5 @@ compile 'com.github.XunMengWinter:RandomPicker:{x.y.z}'
 ```
 
 
+-----------------
+p.s. If you have any suggestion to improve, please discuss on issues or pull requests.
