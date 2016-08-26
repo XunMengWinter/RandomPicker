@@ -3,8 +3,8 @@ Random pick music, smart play
 
 ### Idea：💡
 |  -     | Love Story | 东风破  |Refrain  | Tassel|   －       |
-| 次序   |  weight    | weight  |weight   | weight|   picked   |
 | -------|:----------:| -------:| -------:|------:|-----------:|
+| 次序   |  weight    | weight  |weight   | weight|   picked   |
 | 1      |    1       |     1   |   1     |   1   |   东风破   |
 | 2      |    2       |     0   |   2     |   2   | Love Story |
 | 3      |    0       |     1   |   3     |   3   |   Refrain  |
