@@ -3,7 +3,6 @@ Random pick music, smart play
 
 ### Idea：💡
 | 次序   | Love Story | 东风破  |Refrain | Tassel |   picked   |
-| -------|                rate                    |-----------:|
 | -------|:----------:| -------:| -------:|------:|-----------:|
 | 1      |    1       |     1   |   1     |   1   |   东风破   |
 | 2      |    2       |     0   |   2     |   2   | Love Story |
