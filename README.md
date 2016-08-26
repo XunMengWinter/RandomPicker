@@ -1,4 +1,5 @@
-# RandomPicker
+# RandomPicker [![](https://jitpack.io/v/XunMengWinter/RandomPicker.svg)](https://jitpack.io/#XunMengWinter/RandomPicker)
+
 Random pick music, smart play
 
 ### Idea：💡
@@ -37,4 +38,26 @@ randomPicker.getHistoryList();
 ```
 More more function:
 [download this repo and watch the code.](https://github.com/XunMengWinter/RandomPicker)
+
+### Compile
+The latest version [![](https://jitpack.io/v/XunMengWinter/RandomPicker.svg)](https://jitpack.io/#XunMengWinter/RandomPicker)
+
+add this to the the project level build.gradle file
+
+```
+allprojects {
+    repositories {
+        ...
+        maven { url "https://jitpack.io" }
+    }
+}
+```
+
+add the dependency to the the app level build.gradle file
+
+```
+// replace {x.y.z} with the latest version.
+compile 'com.github.XunMengWinter:RandomPicker:{x.y.z}'
+```
+
 
