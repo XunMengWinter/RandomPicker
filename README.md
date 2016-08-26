@@ -36,5 +36,5 @@ randomPicker.changeOriginWeight(0,3);
 randomPicker.getHistoryList();
 ```
 More more function:
-download this repo and watch the code.
+[download this repo and watch the code.](https://github.com/XunMengWinter/RandomPicker)
 
