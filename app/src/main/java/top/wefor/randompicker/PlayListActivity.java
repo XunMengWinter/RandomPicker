@@ -1,5 +1,7 @@
 package top.wefor.randompicker;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -18,8 +20,15 @@ import java.util.ArrayList;
  * @author ice
  */
 public class PlayListActivity extends AppCompatActivity {
+    private static final String PLAY_LIST = "play_list";
 
-    ArrayList<Music> mMusics;
+    private ArrayList<Music> mMusics;
+
+    public static void go(Context context, ArrayList<Music> historyList) {
+        Intent intent = new Intent(context, PlayListActivity.class);
+        intent.putParcelableArrayListExtra(PLAY_LIST, historyList);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +41,7 @@ public class PlayListActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        mMusics = getIntent().getParcelableArrayListExtra(MainActivity.PLAY_LIST);
+        mMusics = getIntent().getParcelableArrayListExtra(PLAY_LIST);
 
         initList();
     }

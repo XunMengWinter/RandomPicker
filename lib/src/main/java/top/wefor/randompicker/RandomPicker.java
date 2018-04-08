@@ -1,6 +1,7 @@
 package top.wefor.randompicker;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -9,41 +10,29 @@ import java.util.Random;
  * 适用于音乐随机播放等
  * GitHub: https://github.com/XunMengWinter
  * <p/>
- * latest edited date: 2016-08-26
+ * latest edited date: 2018-04-09
  *
  * @author ice
  */
-public class RandomPicker {
+public class RandomPicker implements RandomList {
 
-    private ArrayList<Integer> mOriginWeightList = new ArrayList<>();
-    private ArrayList<Integer> mCurrentWeightList = new ArrayList<>();
-    private ArrayList<Integer> mHistoryList = new ArrayList<>();
+    private List<Integer> mOriginWeightList = new ArrayList<>();
+    private List<Integer> mCurrentWeightList = new ArrayList<>();
 
-    private int mMultiplyNumber = 1;
-    private int mAddNumber = 1;
-    private int mPickedPosition;
     private boolean isRepeatable;
     private Integer mNextPickPosition;
-    Random mRandom = new Random();
+    private Random mRandom = new Random();
 
-    public RandomPicker() {
-        //默认一个，避免报错。
-        new RandomPicker(1);
-    }
+    private Calculator mCalculator = new IncrementCalculator();
+
+
+    private RandomPicker() {}
+
 
     public RandomPicker(int size) {
-        initSize(size);
+        resetList(size);
     }
 
-    /*设置累乘积数*/
-    public void setMultiplyNumber(int multiplyNumber) {
-        mMultiplyNumber = multiplyNumber;
-    }
-
-    /*设置累加积数*/
-    public void setAddNumber(int addNumber) {
-        mAddNumber = addNumber;
-    }
 
     /*指定下一次选中的位置*/
     public void setNextPick(int pickedPosition) {
@@ -55,88 +44,80 @@ public class RandomPicker {
         isRepeatable = repeatable;
     }
 
-    /*初始化列表长度*/
-    public void initSize(int size) {
+    public void setCalculator(Calculator calculator){
+        mCalculator = calculator;
+    }
+
+    @Override
+    public void resetList(int size) {
         mOriginWeightList.clear();
         mCurrentWeightList.clear();
-        mHistoryList.clear();
-        for (int i = 0; i < size; i++)
-            add();
+        for (int i = 0; i < size; i++) {
+            add(1);
+        }
     }
 
-    /*获得当前条目数*/
-    public int getSize() {
-        return mOriginWeightList.size();
-    }
-
-    /*获取历史条目的位置列表*/
-    public ArrayList<Integer> getHistoryList() {
-        return mHistoryList;
-    }
-
-
-             /*上为配置参数*/
-             /*下为逻辑实现*/
-
-
-    /*获得下一个随机条目的位置*/
+    @Override
     public int next() {
-        random();
-        mHistoryList.add(mPickedPosition);
-        return mPickedPosition;
+        return random();
     }
 
-    public void add() {
-        // 默认每个条目的比重为1.
-        add(getSize(), 1);
+    @Override
+    public void add(int originWeight) {
+        mOriginWeightList.add(originWeight);
+        mCurrentWeightList.add(calculateWeight(0, originWeight));
     }
 
-    /*添加一个条目*/
-    public void add(int index, int weight) {
-        mOriginWeightList.add(index, weight);
-        mCurrentWeightList.add(index, calculateWeight(0, weight));
+    @Override
+    public void insert(int index, int originWeight) {
+        mOriginWeightList.add(index, originWeight);
+        mCurrentWeightList.add(index, calculateWeight(0, originWeight));
     }
 
-    /*修改一个条目的比重*/
-    public void changeOriginWeight(int index, int weight) {
-        mOriginWeightList.set(index, weight);
-        int currentWeight = mCurrentWeightList.get(index);
-        mCurrentWeightList.set(index, currentWeight / mOriginWeightList.get(index) * weight);
+    @Override
+    public void changeOriginWeight(int index, int originWeight) {
+        mOriginWeightList.set(index, originWeight);
     }
 
-    /*移除一个条目*/
+    @Override
     public void remove(int index) {
         mOriginWeightList.remove(index);
         mCurrentWeightList.remove(index);
     }
 
+    @Override
+    public int getSize() {
+        return mOriginWeightList.size();
+    }
+
+
     /*执行随机算法*/
-    private void random() {
+    private int random() {
+        // 若列表长度小于2，则下一次位置必为0.
+        if (mCurrentWeightList.size() < 2) {
+            return 0;
+        }
+
+        int nextPos = 0;
         // 算出下一次选中的位置
         if (mNextPickPosition != null) {
-            mPickedPosition = mNextPickPosition;
+            nextPos = mNextPickPosition;
             mNextPickPosition = null;
         } else {
-            long allCount = 0;
+            long allWeight = 0;
             for (int i = 0; i < mCurrentWeightList.size(); i++) {
-                allCount += mCurrentWeightList.get(i);
+                allWeight += mCurrentWeightList.get(i);
             }
 
-            long randomLong = (long) (mRandom.nextDouble() * allCount);
-            long currentLong = 0;
+            long nextPosInWeight = (long) (mRandom.nextDouble() * allWeight);
+            long currentWeight = 0;
             for (int i = 0; i < mCurrentWeightList.size(); i++) {
-                currentLong += mCurrentWeightList.get(i);
-                if (currentLong > randomLong) {
-                    mPickedPosition = i;
+                currentWeight += mCurrentWeightList.get(i);
+                if (currentWeight > nextPosInWeight) {
+                    nextPos = i;
                     break;
                 }
             }
-        }
-
-        // 若列表长度小于2，则下一次位置必为0.
-        if (mCurrentWeightList.size() < 2) {
-            mPickedPosition = 0;
-            return;
         }
 
         // 预先算好下一次的比重
@@ -145,14 +126,15 @@ public class RandomPicker {
             mCurrentWeightList.set(i, weight);
         }
         if (isRepeatable)
-            mCurrentWeightList.set(mPickedPosition, calculateWeight(0, mOriginWeightList.get(mPickedPosition)));
+            mCurrentWeightList.set(nextPos, calculateWeight(0, mOriginWeightList.get(nextPos)));
         else
-            mCurrentWeightList.set(mPickedPosition, 0);
+            mCurrentWeightList.set(nextPos, 0);
+        return nextPos;
     }
 
     /*计算下一次的比重*/
     private int calculateWeight(int currentWeight, int originWeight) {
-        return (currentWeight + mAddNumber) * mMultiplyNumber * originWeight;
+        return mCalculator.calculateWeight(currentWeight, originWeight);
     }
 
 }
