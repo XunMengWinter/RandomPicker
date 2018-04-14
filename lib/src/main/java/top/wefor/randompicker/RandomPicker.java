@@ -26,11 +26,12 @@ public class RandomPicker implements RandomList {
     private Calculator mCalculator = new IncrementCalculator();
 
 
-    private RandomPicker() {}
+    private RandomPicker() {
+    }
 
 
-    public RandomPicker(int size) {
-        resetList(size);
+    public RandomPicker(int size, int originWeight) {
+        resetList(size, originWeight);
     }
 
 
@@ -44,16 +45,16 @@ public class RandomPicker implements RandomList {
         isRepeatable = repeatable;
     }
 
-    public void setCalculator(Calculator calculator){
+    public void setCalculator(Calculator calculator) {
         mCalculator = calculator;
     }
 
     @Override
-    public void resetList(int size) {
+    public void resetList(int size, int originWeight) {
         mOriginWeightList.clear();
         mCurrentWeightList.clear();
         for (int i = 0; i < size; i++) {
-            add(1);
+            add(originWeight);
         }
     }
 
@@ -104,13 +105,19 @@ public class RandomPicker implements RandomList {
             nextPos = mNextPickPosition;
             mNextPickPosition = null;
         } else {
-            long allWeight = 0;
+            int allWeight = 0;
             for (int i = 0; i < mCurrentWeightList.size(); i++) {
                 allWeight += mCurrentWeightList.get(i);
             }
 
-            long nextPosInWeight = (long) (mRandom.nextDouble() * allWeight);
-            long currentWeight = 0;
+            if (allWeight < 0) {
+                //TODO avoid this situation.
+                allWeight = Integer.MAX_VALUE;
+                //Log.e(TAG, "...");
+            }
+
+            int nextPosInWeight = mRandom.nextInt(allWeight);
+            int currentWeight = 0;
             for (int i = 0; i < mCurrentWeightList.size(); i++) {
                 currentWeight += mCurrentWeightList.get(i);
                 if (currentWeight > nextPosInWeight) {
@@ -134,7 +141,7 @@ public class RandomPicker implements RandomList {
 
     /*计算下一次的比重*/
     private int calculateWeight(int currentWeight, int originWeight) {
-        return mCalculator.calculateWeight(currentWeight, originWeight);
+        return mCalculator.calculateNextWeight(currentWeight, originWeight);
     }
 
 }

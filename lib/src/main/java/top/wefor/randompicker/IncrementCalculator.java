@@ -8,7 +8,7 @@ package top.wefor.randompicker;
 
 public class IncrementCalculator implements Calculator {
 
-    private int mIncrement = 1;
+    private int mIncrement = 0;
 
     public IncrementCalculator() {
     }
@@ -18,7 +18,7 @@ public class IncrementCalculator implements Calculator {
     }
 
     @Override
-    public int calculateWeight(int currentWeight, int originWeight) {
-        return (currentWeight + mIncrement) * originWeight;
+    public int calculateNextWeight(int currentWeight, int originWeight) {
+        return currentWeight + mIncrement + originWeight;
     }
 }

@@ -8,7 +8,7 @@ package top.wefor.randompicker;
 
 public interface RandomList {
     /*重置列表*/
-    void resetList(int size);
+    void resetList(int size, int originWeight);
 
     /*获得下一个随机条目的位置*/
     int next();

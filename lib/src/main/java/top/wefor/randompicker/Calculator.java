@@ -9,5 +9,5 @@ package top.wefor.randompicker;
 
 public interface Calculator {
     /* calculate the next weight */
-    int calculateWeight(int currentWeight, int originWeight);
+    int calculateNextWeight(int currentWeight, int originWeight);
 }

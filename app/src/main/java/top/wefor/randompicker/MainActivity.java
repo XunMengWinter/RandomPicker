@@ -41,9 +41,14 @@ public class MainActivity extends AppCompatActivity {
         mMusicList.get(mMusicList.size() - 1).weight = 5;
 
 
-        mRandomPicker = new RandomPicker(mMusicList.size());
+        mRandomPicker = new RandomPicker(mMusicList.size(), 1);
 //        mRandomPicker.setRepeatable(true);
-        mRandomPicker.setCalculator(new MultiplyCalculator(3));
+        mRandomPicker.setCalculator(new Calculator() {
+            @Override
+            public int calculateNextWeight(int currentWeight, int originWeight) {
+                return (currentWeight + 1) * originWeight;
+            }
+        });
 
         mRandomPicker.changeOriginWeight(0, 3);
         mRandomPicker.changeOriginWeight(mMusicList.size() - 1, 5);
