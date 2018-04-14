@@ -14,14 +14,31 @@
         android:src="@mipmap/bg_disco"
         />
 
-    <ImageView
-        android:id="@+id/nextBtn_iv"
-        android:layout_width="match_parent"
+    <FrameLayout
+        android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_gravity="bottom"
-        android:alpha="0.9"
-        android:background="@drawable/selector_bg_next_btn"
-        android:clickable="true"
-        android:src="@drawable/ic_skip_next_white_36dp"/>
+        android:layout_marginLeft="32dp"
+        android:layout_marginBottom="100dp"
+        >
 
+        <android.support.v7.widget.AppCompatCheckBox
+            android:layout_gravity="center"
+            android:checked="false"
+            android:button="@drawable/selector_cut_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
+
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/nextBtn_iv"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="100dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/selector_next_btn"/>
 </FrameLayout>
