@@ -130,7 +130,7 @@ public class RandomPicker implements RandomList, CutMode {
                 allWeight += mCurrentWeightList.get(i);
             }
 
-            if (allWeight < 0) {
+            if (allWeight <= 0) {
                 //TODO avoid this situation.
                 allWeight = Integer.MAX_VALUE;
                 //Log.e(TAG, "...");

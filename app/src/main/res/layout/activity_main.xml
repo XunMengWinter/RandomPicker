@@ -23,6 +23,7 @@
         >
 
         <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/cutMode_checkBox"
             android:layout_gravity="center"
             android:checked="false"
             android:button="@drawable/selector_cut_checkbox"

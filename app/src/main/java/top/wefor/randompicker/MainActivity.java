@@ -1,11 +1,14 @@
 package top.wefor.randompicker;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import java.util.ArrayList;
 
@@ -62,6 +65,22 @@ public class MainActivity extends AppCompatActivity {
                 setTitle(music.name);
                 music.pickedTime++;
                 mHistoryList.add(music);
+            }
+        });
+
+        CheckBox checkBox = (CheckBox) findViewById(R.id.cutMode_checkBox);
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Snackbar snackbar = Snackbar.make(buttonView, (isChecked ? "Enter in" : "Exit from") + " Cut mode", 2_000);
+                View view = snackbar.getView();
+                view.setBackgroundResource(R.color.colorPrimary);
+                snackbar.show();
+
+                if (isChecked)
+                    mRandomPicker.enterCutMode();
+                else
+                    mRandomPicker.exitCutMode();
             }
         });
 
