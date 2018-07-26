@@ -8,18 +8,27 @@
     tools:context="top.wefor.randompicker.MainActivity">
 
     <ImageView
+        android:id="@+id/cover_bg_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@mipmap/bg_disco"
+        android:src="@color/colorPrimary"
         />
+
+    <ImageView
+        android:id="@+id/cover_img_iv"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginBottom="100dp"
+        android:layout_gravity="center"
+        android:layout_width="160dp"
+        android:layout_height="160dp"/>
 
     <FrameLayout
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_gravity="bottom"
         android:layout_marginLeft="32dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="64dp"
         >
 
         <android.support.v7.widget.AppCompatCheckBox
@@ -37,18 +46,9 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="64dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/selector_next_btn"/>
-
-    <android.support.v7.widget.AppCompatImageView
-        android:alpha="0.9"
-        android:onClick="openMusicAty"
-        android:src="@drawable/ic_music_note_white_36dp"
-        android:layout_gravity="right"
-        android:layout_margin="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 </FrameLayout>
