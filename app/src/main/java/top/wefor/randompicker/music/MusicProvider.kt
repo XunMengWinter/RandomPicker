@@ -56,7 +56,7 @@ class MusicProvider(context: Context) {
 
 
     private fun getAlbumImage(albumId: Int): String? {
-        var result : String? = ""
+        var result: String? = ""
         var cursor: Cursor? = null
         try {
             cursor = mContext.getContentResolver().query(
@@ -66,6 +66,8 @@ class MusicProvider(context: Context) {
                 result = cursor.getString(0)
                 break
             }
+        } catch (e: Exception) {
+
         } finally {
             if (cursor != null) {
                 cursor.close()
