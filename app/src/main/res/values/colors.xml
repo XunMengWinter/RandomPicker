@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#4a2f4e</color>
     <color name="colorPrimaryDark">#4a2f4e</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#c44242</color>
 
+    <color name="colorNav">#4a2f4e</color>
     <color name="colorPrimary5">#554a2f4e</color>
 </resources>

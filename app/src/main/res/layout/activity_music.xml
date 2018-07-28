@@ -30,6 +30,13 @@
             android:adjustViewBounds="true"
             android:src="@drawable/ic_music_note_white_36dp"/>
 
+        <android.support.v7.widget.AppCompatSeekBar
+            android:id="@+id/progress_seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:padding="4dp"/>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -53,6 +60,15 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:src="@drawable/selector_next_btn"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/previousBtn_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginRight="32dp"
+                android:src="@drawable/selector_previous_btn"
+                />
         </FrameLayout>
 
     </android.support.v7.widget.LinearLayoutCompat>

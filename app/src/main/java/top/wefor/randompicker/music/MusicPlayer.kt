@@ -15,10 +15,9 @@ import java.io.FileInputStream
 class MusicPlayer(lifecycle: Lifecycle) : LifecycleObserver {
 
     private var mMediaPlayer = MediaPlayer()
-    internal var mLifecycle: Lifecycle
+    private var mLifecycle: Lifecycle = lifecycle
 
     init {
-        mLifecycle = lifecycle
         mLifecycle.addObserver(this)
     }
 
@@ -38,12 +37,27 @@ class MusicPlayer(lifecycle: Lifecycle) : LifecycleObserver {
         }
     }
 
+    fun next(musicFilePath: String) {
+        play(musicFilePath)
+    }
+
     fun setCompletionListener(completionListener: MediaPlayer.OnCompletionListener) {
         mMediaPlayer.setOnCompletionListener(completionListener)
     }
 
-    fun next(musicFilePath: String) {
-        play(musicFilePath)
+    fun seekTo(progress: Float) {
+        try {
+            mMediaPlayer.seekTo((progress * mMediaPlayer.duration).toInt())
+        } catch (e: Exception) {
+        }
+    }
+
+    fun getProgress(): Float {
+        return try {
+            mMediaPlayer.currentPosition.toFloat() / mMediaPlayer.duration
+        } catch (e: Exception) {
+            0f
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
