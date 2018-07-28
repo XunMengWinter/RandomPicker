@@ -20,7 +20,9 @@
 
         <activity android:name=".PlayListActivity"/>
 
-        <activity android:name=".music.MusicActivity"/>
+        <activity android:name=".music.MusicActivity"
+                  android:screenOrientation="sensorPortrait"
+            />
 
     </application>
 

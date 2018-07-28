@@ -2,7 +2,6 @@ package top.wefor.randompicker.music
 
 import android.content.Context
 import android.database.Cursor
-import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import java.io.File
@@ -10,14 +9,11 @@ import java.io.File
 /**
  * Created on 2018/7/26.
  * @author ice
- */
-/**
- * 100ms
+ * @GitHub https://github.com/XunMengWinter
  */
 class MusicProvider(context: Context) {
 
     val mMusicList = getMusicList(context, Environment.getExternalStorageDirectory())
-    val mContext = context
 
     /**
      * 极速遍历本地音乐
@@ -46,7 +42,7 @@ class MusicProvider(context: Context) {
             music.artist = (artist)
             music.filePath = (cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)))
             music.length = (cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)))
-            music.image = (getAlbumImage(cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)))).orEmpty()
+            music.imageFilePath = (getAlbumImage(context, cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)))).orEmpty()
             list.add(music);
         }
         cursor.close()
@@ -54,27 +50,24 @@ class MusicProvider(context: Context) {
         return list
     }
 
-
-    private fun getAlbumImage(albumId: Int): String? {
-        var result: String? = ""
+    private fun getAlbumImage(context: Context, albumId: Int): String? {
+        var path: String? = ""
         var cursor: Cursor? = null
         try {
-            cursor = mContext.getContentResolver().query(
-                    Uri.parse("content://media/external/audio/albums/$albumId"), arrayOf("album_art"), null, null, null)
-            cursor.moveToFirst()
-            while (!cursor.isAfterLast()) {
-                result = cursor.getString(0)
-                break
+            cursor = context.getContentResolver().query(MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
+                    arrayOf(MediaStore.Audio.Albums._ID, MediaStore.Audio.Albums.ALBUM_ART),
+                    MediaStore.Audio.Albums._ID + "=?",
+                    arrayOf<String>(albumId.toString()),
+                    null)
+            if (cursor.moveToFirst()) {
+                // do whatever you need to do
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART))
             }
         } catch (e: Exception) {
-
         } finally {
-            if (cursor != null) {
-                cursor.close()
-            }
+            cursor?.close()
         }
-
-        return result
+        return path
     }
 
 }

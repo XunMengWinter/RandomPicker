@@ -10,6 +10,7 @@ import java.io.FileInputStream
 /**
  * Created on 2018/7/26.
  * @author ice
+ * @GitHub https://github.com/XunMengWinter
  */
 class MusicPlayer(lifecycle: Lifecycle) : LifecycleObserver {
 

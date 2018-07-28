@@ -1,23 +1,27 @@
 package top.wefor.randompicker.music
 
 import android.Manifest
-import android.content.Intent
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.widget.CheckBox
 import android.widget.CompoundButton
 import android.widget.ImageView
 import top.wefor.randompicker.R
 import top.wefor.randompicker.RandomPicker
+import java.io.File
 
 /**
  * Created on 2018/7/26.
  * @author ice
+ * @GitHub https://github.com/XunMengWinter
  */
 class MusicActivity : AppCompatActivity() {
 
+    var mCutMode = false
     val mMusicPlayer: MusicPlayer = MusicPlayer(getLifecycle())
     lateinit var mMusicProvider: MusicProvider
     lateinit var mRandomPicker: RandomPicker
@@ -38,7 +42,7 @@ class MusicActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 11){
+        if (requestCode == 11) {
             initData()
         }
     }
@@ -51,7 +55,7 @@ class MusicActivity : AppCompatActivity() {
         mCoverBgIv = findViewById(R.id.cover_bg_iv)
     }
 
-    fun initData(){
+    fun initData() {
         mMusicProvider = MusicProvider(this)
         mRandomPicker = RandomPicker(mMusicProvider.mMusicList.size, 1)
 
@@ -71,6 +75,7 @@ class MusicActivity : AppCompatActivity() {
     }
 
     fun setCutMode(enterCutMode: Boolean) {
+        mCutMode = enterCutMode
         if (enterCutMode)
             mRandomPicker.enterCutMode()
         else
@@ -78,11 +83,28 @@ class MusicActivity : AppCompatActivity() {
     }
 
     fun next() {
-        if (mMusicProvider.mMusicList.isEmpty()){
+        if (mMusicProvider.mMusicList.isEmpty()) {
             return
         }
-        val musicBean = mMusicProvider.mMusicList.get(mRandomPicker.next())
+        val startNanoTime = System.nanoTime()
+        val index= mRandomPicker.next()
+        val costNanoTime = System.nanoTime() - startNanoTime
+        Log.i("xyz ", "RandomPicker cost ${costNanoTime/1_000_000F} millisecond, cutMode: ${mCutMode}, list size: ${mRandomPicker.size}")
+
+        val musicBean = mMusicProvider.mMusicList.get(index)
         setTitle(musicBean.title)
+        showImage(musicBean.imageFilePath)
         mMusicPlayer.next(musicBean.filePath)
+    }
+
+    private fun showImage(filePath: String?) {
+        if (!filePath.isNullOrEmpty()) {
+            val file = File(filePath)
+            if (file.exists()) {
+                mCoverImgIv.setImageURI(Uri.fromFile(file));
+                return
+            }
+        }
+        mCoverImgIv.setImageResource(R.drawable.ic_music_note_white_36dp)
     }
 }

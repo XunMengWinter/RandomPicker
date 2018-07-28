@@ -15,40 +15,46 @@
         android:src="@color/colorPrimary"
         />
 
-    <ImageView
-        android:id="@+id/cover_img_iv"
-        android:src="@mipmap/ic_launcher"
-        android:layout_marginBottom="100dp"
-        android:layout_gravity="center"
-        android:layout_width="160dp"
-        android:layout_height="160dp"/>
-
-    <FrameLayout
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="32dp"
-        android:layout_marginBottom="64dp"
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         >
 
-        <android.support.v7.widget.AppCompatCheckBox
-            android:id="@+id/cutMode_checkBox"
-            android:layout_gravity="center"
-            android:checked="false"
-            android:button="@drawable/selector_cut_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </FrameLayout>
+        <ImageView
+            android:id="@+id/cover_img_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="64dp"
+            android:layout_marginBottom="100dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_music_note_white_36dp"/>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            >
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/nextBtn_iv"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="64dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/selector_next_btn"/>
+            <android.support.v7.widget.AppCompatCheckBox
+                android:id="@+id/cutMode_checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="32dp"
+                android:button="@drawable/selector_cut_checkbox"
+                android:checked="false"/>
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/nextBtn_iv"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/selector_next_btn"/>
+        </FrameLayout>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
 </FrameLayout>
