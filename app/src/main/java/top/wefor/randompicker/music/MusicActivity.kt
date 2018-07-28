@@ -9,9 +9,13 @@ import android.os.CountDownTimer
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatSeekBar
 import android.util.Log
-import android.widget.*
+import android.widget.CheckBox
+import android.widget.CompoundButton
+import android.widget.ImageView
+import android.widget.SeekBar
 import top.wefor.randompicker.R
 import top.wefor.randompicker.RandomPicker
+import top.wefor.randompicker.showTips
 import java.io.File
 
 /**
@@ -78,12 +82,18 @@ class MusicActivity : AppCompatActivity() {
         })
 
         mCutModeCheckBox.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
-            override fun onCheckedChanged(p0: CompoundButton?, p1: Boolean) {
-                setCutMode(p1)
+            override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
+                showTips(buttonView, (if (isChecked) "Enter" else "Exit") + " Cut mode")
+
+                mCutMode = isChecked
+                if (mCutMode)
+                    mRandomPicker.enterCutMode()
+                else
+                    mRandomPicker.exitCutMode()
             }
         })
 
-        mProgressSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+        mProgressSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
             }
 
@@ -97,7 +107,7 @@ class MusicActivity : AppCompatActivity() {
         mNextBtnIv.setOnClickListener { next() }
         mPreviousBtnIv.setOnClickListener { previous() }
 
-        mCountDownTimer = object:CountDownTimer(Long.MAX_VALUE, 1_000){
+        mCountDownTimer = object : CountDownTimer(Long.MAX_VALUE, 1_000) {
             override fun onTick(millisUntilFinished: Long) {
                 mProgressSeekBar.setProgress((mMusicPlayer.getProgress() * 100).toInt())
             }
@@ -107,14 +117,6 @@ class MusicActivity : AppCompatActivity() {
             }
         }
         mCountDownTimer?.start()
-    }
-
-    fun setCutMode(enterCutMode: Boolean) {
-        mCutMode = enterCutMode
-        if (enterCutMode)
-            mRandomPicker.enterCutMode()
-        else
-            mRandomPicker.exitCutMode()
     }
 
     fun next() {
@@ -136,7 +138,7 @@ class MusicActivity : AppCompatActivity() {
         val musicBean = mMusicProvider.mMusicList.get(index)
         play(musicBean)
         mHistoryList.add(musicBean)
-        mHistoryIndex = - 1 //reset history index
+        mHistoryIndex = -1 //reset history index
     }
 
     fun previous() {

@@ -10,7 +10,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -18,7 +20,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".PlayListActivity"/>
+        <activity
+            android:name=".PlayListActivity"
+            android:screenOrientation="sensorPortrait"
+            />
 
         <activity
             android:name=".music.MusicActivity"

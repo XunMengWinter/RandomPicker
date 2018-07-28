@@ -2,7 +2,6 @@ package top.wefor.randompicker;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -75,10 +74,7 @@ public class MainActivity extends AppCompatActivity {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Snackbar snackbar = Snackbar.make(buttonView, (isChecked ? "Enter in" : "Exit from") + " Cut mode", 2_000);
-                View view = snackbar.getView();
-                view.setBackgroundResource(R.color.colorPrimary);
-                snackbar.show();
+                SnackbarUtilKt.showTips(buttonView, (isChecked ? "Enter" : "Exit") + " Cut mode");
 
                 if (isChecked)
                     mRandomPicker.enterCutMode();
