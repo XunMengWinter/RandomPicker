@@ -23,7 +23,7 @@ The music's weight is positive correlated with be picked chance.
 ...
 
 ### Demo
-![RandomPicker](https://raw.githubusercontent.com/XunMengWinter/source/master/image/RandomPicker.png)
+![RandomPicker](https://raw.githubusercontent.com/XunMengWinter/source/master/images/RandomPicker.png)
 
 ### How to use
 Quick start:
