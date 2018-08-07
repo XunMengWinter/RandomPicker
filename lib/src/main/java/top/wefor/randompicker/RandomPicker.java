@@ -30,7 +30,7 @@ public class RandomPicker implements RandomList, CutMode {
     private Calculator mCalculator = new IncrementCalculator();
 
 
-    private RandomPicker() {
+    public RandomPicker() {
     }
 
 
