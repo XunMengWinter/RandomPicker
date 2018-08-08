@@ -9,7 +9,20 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
 //        assertEquals(4, 2 + 2);
+        RandomPicker randomPicker = new RandomPicker();
+        randomPicker.resetList(20, 1);
+        for (int i = 0;i < 20; i++){
+            int times = 0;
+            while (true){
+                times++;
+                if (randomPicker.next() == 7)
+                    break;
+            }
+            System.out.println(times);
+        }
+    }
 
+    private void randomTest() {
         final int size = 30;
         RandomPicker randomPicker = new RandomPicker();
         randomPicker.setCalculator(new Calculator() {

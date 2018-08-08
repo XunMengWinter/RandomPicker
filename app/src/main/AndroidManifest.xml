@@ -11,25 +11,26 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="sensorPortrait">
+            android:name=".EntranceActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".PlayListActivity"
-            android:screenOrientation="sensorPortrait"
-            />
-
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".music.MusicActivity"
-            android:screenOrientation="sensorPortrait"
-            />
-
+            android:screenOrientation="sensorPortrait"/>
+        <activity
+            android:name=".game.GameActivity"
+            android:screenOrientation="sensorPortrait"/>
     </application>
 
 </manifest>
