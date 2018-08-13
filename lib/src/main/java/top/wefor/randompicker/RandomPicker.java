@@ -11,7 +11,7 @@ import java.util.Random;
  * 适用于音乐随机播放等
  * GitHub: https://github.com/XunMengWinter
  * <p/>
- * latest edited date: 2018-04-14
+ * latest edited date: 2018-08-13
  *
  * @author ice
  */
@@ -70,13 +70,13 @@ public class RandomPicker implements RandomList, CutMode {
     @Override
     public void add(int originWeight) {
         mOriginWeightList.add(originWeight);
-        mCurrentWeightList.add(calculateWeight(0, originWeight));
+        mCurrentWeightList.add(calculateWeight(mCurrentWeightList.size(), 0, originWeight));
     }
 
     @Override
     public void insert(int index, int originWeight) {
         mOriginWeightList.add(index, originWeight);
-        mCurrentWeightList.add(index, calculateWeight(0, originWeight));
+        mCurrentWeightList.add(index, calculateWeight(index, 0, originWeight));
     }
 
     @Override
@@ -93,6 +93,11 @@ public class RandomPicker implements RandomList, CutMode {
     @Override
     public int getSize() {
         return mOriginWeightList.size();
+    }
+
+    @Override
+    public int getWeight(int index) {
+        return mCurrentWeightList.get(index);
     }
 
     @Override
@@ -147,33 +152,48 @@ public class RandomPicker implements RandomList, CutMode {
             }
         }
 
-        // 预先算好下一次的比重
+        if (isCutMode()) {
+            mCutOutSet.add(nextPos);
+            if (mCutOutSet.size() >= getSize())
+                mCutOutSet.clear();
+        }
+
+        // 预先算好下一次的比重. 注意，这里尽量item不多次执行calculateWeight()且按顺序执行。
         for (int i = 0; i < mCurrentWeightList.size(); i++) {
+            if (i == nextPos) {
+                if (isCutMode() && mCutOutSet.contains(i)) {
+                    mCurrentWeightList.set(nextPos, 0);
+                } else {
+                    if (isRepeatable)
+                        mCurrentWeightList.set(nextPos, calculateWeight(nextPos, 0, mOriginWeightList.get(nextPos)));
+                    else
+                        mCurrentWeightList.set(nextPos, 0);
+                }
+                continue;
+            }
+
             if (isCutMode()) {
                 if (mCutOutSet.contains(i)) {
                     continue;
                 }
             }
-            int weight = calculateWeight(mCurrentWeightList.get(i), mOriginWeightList.get(i));
+
+            int weight = calculateWeight(i, mCurrentWeightList.get(i), mOriginWeightList.get(i));
             mCurrentWeightList.set(i, weight);
         }
-        if (isRepeatable)
-            mCurrentWeightList.set(nextPos, calculateWeight(0, mOriginWeightList.get(nextPos)));
-        else
-            mCurrentWeightList.set(nextPos, 0);
 
-        if (isCutMode()) {
-            mCurrentWeightList.set(nextPos, 0);
-            mCutOutSet.add(nextPos);
-            if (mCutOutSet.size() >= getSize())
-                mCutOutSet.clear();
-        }
         return nextPos;
     }
 
+    public void resetCurrentWeight(int weight) {
+        for (int i = 0; i < mCurrentWeightList.size(); i++) {
+            mCurrentWeightList.set(i, weight);
+        }
+    }
+
     /*计算下一次的比重*/
-    private int calculateWeight(int currentWeight, int originWeight) {
-        return mCalculator.calculateNextWeight(currentWeight, originWeight);
+    private int calculateWeight(int position, int currentWeight, int originWeight) {
+        return mCalculator.calculateNextWeight(position, currentWeight, originWeight);
     }
 
 }

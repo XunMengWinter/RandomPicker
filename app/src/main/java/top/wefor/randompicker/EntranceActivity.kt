@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import top.wefor.randompicker.game.DiceActivity
 import top.wefor.randompicker.game.GameActivity
 
 class EntranceActivity : AppCompatActivity() {
@@ -18,6 +19,6 @@ class EntranceActivity : AppCompatActivity() {
     }
 
     fun game(view: View){
-        startActivity(Intent(this, GameActivity::class.java))
+        startActivity(Intent(this, DiceActivity::class.java))
     }
 }

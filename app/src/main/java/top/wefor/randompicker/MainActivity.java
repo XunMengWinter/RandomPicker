@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 //        mRandomPicker.setRepeatable(true);
         mRandomPicker.setCalculator(new Calculator() {
             @Override
-            public int calculateNextWeight(int currentWeight, int originWeight) {
+            public int calculateNextWeight(int position, int currentWeight, int originWeight) {
                 return (currentWeight + 1) * originWeight;
             }
         });
@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                     mRandomPicker.exitCutMode();
             }
         });
-
     }
 
     @Override

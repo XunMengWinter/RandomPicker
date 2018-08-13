@@ -27,4 +27,7 @@ public interface RandomList {
 
     /*获取长度*/
     int getSize();
+
+    /*获取某个条目的权重*/
+    int getWeight(int index);
 }

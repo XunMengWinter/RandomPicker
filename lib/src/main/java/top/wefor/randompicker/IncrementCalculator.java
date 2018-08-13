@@ -18,7 +18,7 @@ public class IncrementCalculator implements Calculator {
     }
 
     @Override
-    public int calculateNextWeight(int currentWeight, int originWeight) {
+    public int calculateNextWeight(int position, int currentWeight, int originWeight) {
         return currentWeight + mIncrement + originWeight;
     }
 }
