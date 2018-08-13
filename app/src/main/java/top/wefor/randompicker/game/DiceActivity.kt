@@ -44,10 +44,10 @@ class DiceActivity : AppCompatActivity() {
         mBoardTv = findViewById(R.id.board_tv)
 
         val spinnerList = arrayListOf<String>()
-        spinnerList.add("originWeight++ random") //默认随机
-        spinnerList.add("independent random") //独立随机。即"真随机"
-        spinnerList.add("Blizzard War3 critical random") //war3暴击随机
-        spinnerList.add("draw random: one by one") //翻牌随机：一次一张地翻
+        spinnerList.add("1. originWeight++ random") //默认随机
+        spinnerList.add("2. independent random") //独立随机。即"真随机"
+        spinnerList.add("3. Blizzard War3 critical random") //war3暴击随机
+        spinnerList.add("4. draw random: one by one") //翻牌随机：一次一张地翻
 
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerList)
         mSpinner.adapter = adapter
