@@ -3,9 +3,9 @@
 [简书中文](https://www.jianshu.com/p/4c28269e6203)
 
 ### Idea：💡
-Pseudo-random. There are some musics in your play list, each music's weight is 1 in the first.
-Each time you clicked the next button, each music's weight++, and the picked music's weight return to 0.
-The music's weight is positive correlated with be picked chance.
+Pseudo-random. There are some songs in your play list, each song's weight is 1 in the first.
+Each time you click the next button, each song's weight increases by 1, and the selected song's weight returns to 0.
+The song's weight is positively correlated with the chance of being picked.
 
 |  -     | Love Story | 东风破  |Refrain  | Tassel|   －       |
 | -------|:----------:| -------:| -------:|------:|-----------:|
@@ -40,13 +40,13 @@ randomPicker.add();
 randomPicker.changeOriginWeight(0,3);
 randomPicker.getHistoryList();
 ```
-More more function:
-[download this repo and watch the code.](https://github.com/XunMengWinter/RandomPicker)
+More functions:
+[download this repo and take a look at the code.](https://github.com/XunMengWinter/RandomPicker)
 
 ### Compile
 The latest version [![](https://jitpack.io/v/XunMengWinter/RandomPicker.svg)](https://jitpack.io/#XunMengWinter/RandomPicker)
 
-add this to the the project level build.gradle file
+add this to the project level build.gradle file
 
 ```
 allprojects {
@@ -57,7 +57,7 @@ allprojects {
 }
 ```
 
-add the dependency to the the app level build.gradle file
+add the dependency to the app level build.gradle file
 
 ```
 // replace {x.y.z} with the latest version.
@@ -66,4 +66,4 @@ compile 'com.github.XunMengWinter:RandomPicker:{x.y.z}'
 
 
 -----------------
-p.s. If you have any suggestion to improve, please discuss on issues or pull requests.
+p.s. If you have any suggestions for improvement, please discuss on issues or pull requests.
