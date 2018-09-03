@@ -137,4 +137,8 @@ class DiceActivity : AppCompatActivity() {
     fun machine(view: View) {
         startActivity(Intent(this, GameActivity::class.java))
     }
+
+    fun scoreShuffle(view: View) {
+        startActivity(Intent(this, ScoreShuffleActivity::class.java))
+    }
 }

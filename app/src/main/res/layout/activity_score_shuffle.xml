@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".game.ScoreShuffleActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="@string/summary_score_shuffle"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/crit_simulate"
+            android:textColor="@color/colorAccent"/>
+
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="5">
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+
+            <ImageView
+                android:layout_width="@dimen/size_card"
+                android:layout_height="@dimen/size_card"
+                android:layout_margin="8dp"
+                android:src="@drawable/ic_unknown"/>
+        </GridLayout>
+
+        <TextView
+            android:id="@+id/percent_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="暴击率: 0%      0/0"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/silence_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#3000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone"
+        />
+</FrameLayout>

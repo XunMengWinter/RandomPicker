@@ -28,12 +28,12 @@
             android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".game.GameActivity"
-            android:screenOrientation="sensorPortrait"
-            />
+            android:screenOrientation="sensorPortrait"/>
         <activity
             android:name=".game.DiceActivity"
-            android:screenOrientation="sensorPortrait"
-            />
+            android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".game.ScoreShuffleActivity">
+        </activity>
     </application>
 
 </manifest>

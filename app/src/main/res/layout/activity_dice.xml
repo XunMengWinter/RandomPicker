@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="20%暴击率模拟"
+        android:text="@string/crit_simulate"
         android:textColor="@color/colorAccent"/>
 
     <RadioGroup
@@ -142,7 +142,7 @@
         android:id="@+id/percent_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="暴击率 0/0"/>
+        android:text="暴击率: 0%      0/0"/>
 
     <TextView
         android:id="@+id/board_tv"
@@ -171,8 +171,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:onClick="machine"
-            android:text="game machine"
+            android:text="game machine(TODO)"
             android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:onClick="scoreShuffle"
+            android:text="翻中洗牌随机"
+            android:textColor="@color/colorPrimary"/>
+
     </FrameLayout>
 
 </LinearLayout>

@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">RandomPicker</string>
+    <string name="summary_score_shuffle">翻中洗牌随机\n\n
+        规则: 在一轮翻牌中，若翻中获胜牌，则重新洗牌开始下一轮。\n\n
+        优点: 无真空期，最坏情况不糟。\n\n
+        假设有 n 张牌，那么——\n
+        综合概率：2/(n+1) \n
+        平均情况：n+1次命中2次；\n
+        最坏情况：n次命中1次；\n
+        最好情况：n次命中n次。\n
+    </string>
+    <string name="crit_simulate">20%暴击率模拟</string>
 </resources>
